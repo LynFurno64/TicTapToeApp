@@ -12,8 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.tictactoeapp.Logic.GameLogic3x3;
-
 
 public class TicTacToeBoard extends View  implements GridBoard{
     private final Paint mDrawPaint = new Paint();

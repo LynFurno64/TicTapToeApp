@@ -12,8 +12,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.tictactoeapp.Logic.GameLogic4x4;
-
 
 public class TicTacToeBoard4x4 extends View implements GridBoard{
     private final Paint mDrawPaint = new Paint();
@@ -52,7 +50,7 @@ public class TicTacToeBoard4x4 extends View implements GridBoard{
 
     @Override
     protected void onDraw(Canvas canvas){
-        drawGameBoard(canvas, 3, cellSize, mDrawPaint);
+        drawGameBoard(canvas, 4, cellSize, mDrawPaint);
         drawMarkers(canvas);
     }// onDraw
 
