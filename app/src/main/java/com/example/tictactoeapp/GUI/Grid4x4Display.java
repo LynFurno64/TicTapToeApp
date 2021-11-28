@@ -32,7 +32,6 @@ public class Grid4x4Display extends AppCompatActivity {
         playAgainBtn.setVisibility(View.GONE);
         homeBtn.setVisibility(View.GONE);
 
-
         String[] playerNames = getIntent().getStringArrayExtra("PLAYER_NAMES");
         assert playerNames != null;
         if (playerNames[0].equals("")){
@@ -45,15 +44,6 @@ public class Grid4x4Display extends AppCompatActivity {
         ticTacToeBoard4x4 = findViewById(R.id.ticTacToeBoard4x4);
 
         ticTacToeBoard4x4.gameTime(playAgainBtn,homeBtn,playerTurn,playerNames);
-        
-        SharedPreferences sharedPref =
-                PreferenceManager.getDefaultSharedPreferences(this);
-        String prefVal = sharedPref.getString("sync_frequency", "-1");
-        Toast.makeText(this, "sync_frequency: " + prefVal, Toast.LENGTH_SHORT).show();
-
-        ButterKnife.bind(this);
-
-
     }
 
     public void playAgainBtnClick(View view){

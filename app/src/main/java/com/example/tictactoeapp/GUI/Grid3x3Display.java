@@ -46,12 +46,6 @@ public class Grid3x3Display extends AppCompatActivity {
         ticTacToeBoard = findViewById(R.id.ticTacToeBoard_3);
 
         ticTacToeBoard.gameTime(playAgainBtn,homeBtn,playerTurn,playerNames);
-
-
-        SharedPreferences sharedPref =
-                PreferenceManager.getDefaultSharedPreferences(this);
-        String prefVal = sharedPref.getString("sync_frequency", "-1");
-        Toast.makeText(this, "sync_frequency: " + prefVal, Toast.LENGTH_SHORT).show();
     }
 
     public void playAgainBtnClick(View view){

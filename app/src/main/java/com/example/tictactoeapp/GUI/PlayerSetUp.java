@@ -3,6 +3,7 @@ package com.example.tictactoeapp.GUI;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,6 +19,11 @@ public class PlayerSetUp extends AppCompatActivity {
     EditText player2;
     String gameBoard;
     Intent intent;
+    public static final String SHARE_PREF = "shared";
+    public static final String PLAYER_1 = "player_1";
+    public static final String PLAYER_2 = "player_2";
+    public String text_1;
+    public String text_2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +49,19 @@ public class PlayerSetUp extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+        update();
     }// onCreate
 
     public void startButtonClick(View view){
         String player1Name = player1.getText().toString();
         String player2Name = player2.getText().toString();
+
+        //Save names
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREF, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(PLAYER_1, player1Name);
+        editor.putString(PLAYER_2,player2Name);
+        editor.apply();
 
         //Opens a different GameBoard-display based on users choice
         switch (gameBoard){
@@ -68,4 +82,12 @@ public class PlayerSetUp extends AppCompatActivity {
                 break;
         }
     }// startButtonClick
+
+    private void update(){
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARE_PREF, MODE_PRIVATE);
+        text_1 = sharedPreferences.getString(PLAYER_1, "");
+        player1.setText(text_1);
+        text_2 = sharedPreferences.getString(PLAYER_2, "");
+        player2.setText(text_2);
+    }// update
 }

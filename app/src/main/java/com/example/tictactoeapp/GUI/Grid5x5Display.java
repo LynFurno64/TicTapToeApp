@@ -42,13 +42,6 @@ public class Grid5x5Display extends AppCompatActivity {
         ticTacToeBoard5x5 = findViewById(R.id.ticTacToeBoard_5);
 
         ticTacToeBoard5x5.gameTime(playAgainBtn,homeBtn,playerTurn,playerNames);
-
-
-        SharedPreferences sharedPref =
-                PreferenceManager.getDefaultSharedPreferences(this);
-        String prefVal = sharedPref.getString("sync_frequency", "-1");
-        Toast.makeText(this, "sync_frequency: " + prefVal, Toast.LENGTH_SHORT).show();
-
     }
 
     public void playAgainBtnClick(View view){

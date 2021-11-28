@@ -2,9 +2,7 @@ package com.example.tictactoeapp.Boards;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Canvas;
-import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -12,25 +10,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.tictactoeapp.Boards.Logic.GameLogic;
+
 
 public class TicTacToeBoard extends View  implements GridBoard{
-    private final Paint mDrawPaint = new Paint();
     private int cellSize;
-    private final int mPaintColor = Color.BLACK;
-    private final GameLogic3x3 game = new GameLogic3x3();
+    private final GameLogic game = new GameLogic(3);
     private boolean winLine = false;
 
     public TicTacToeBoard(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initPaint();
-    }
-
-    private void initPaint()
-    {
-        mDrawPaint.setStyle(Paint.Style.STROKE);
-        mDrawPaint.setAntiAlias(true);
-        mDrawPaint.setColor(mPaintColor);
-        mDrawPaint.setStrokeWidth(16);
     }
 
     // Set Dimensions of Board
@@ -50,10 +39,8 @@ public class TicTacToeBoard extends View  implements GridBoard{
 
     @Override
     protected void onDraw(Canvas canvas){
-
-        drawGameBoard(canvas, 3, cellSize, mDrawPaint);
-        drawMarkers(canvas);
-
+        drawGameBoard(canvas, 3, cellSize);
+        drawMarkers(canvas, 3, cellSize, game);
     }// onDraw
 
     @SuppressLint("ClickableViewAccessibility")
@@ -72,7 +59,7 @@ public class TicTacToeBoard extends View  implements GridBoard{
                 if (game.updateGameBoard(row,col)){
                     invalidate();
 
-                    if(game.Winner()){
+                    if(game.winConditions3x3()){
                         winLine = true;
                         invalidate();
                     }
@@ -91,22 +78,6 @@ public class TicTacToeBoard extends View  implements GridBoard{
         return false;
     }
 
-
-    private void drawMarkers(Canvas canvas){
-        for (int r=0; r<3; r++){
-            for (int c=0; c<3; c++){
-                if (game.getGameBoard()[r][c] != 0){
-                    if (game.getGameBoard()[r][c] == 1){
-                        DrawX(canvas,r,c, cellSize);
-                    }
-                    else {
-                        DrawO(canvas,r,c, cellSize);
-                    }
-                }
-            }
-        }
-    }// drawMarkers
-
     //setup the game
     public void gameTime(Button playAgain,Button home,TextView playDisplay,String[] name){
         game.setPlayAgainBtn(playAgain);
@@ -118,7 +89,7 @@ public class TicTacToeBoard extends View  implements GridBoard{
     }
 
     public void resetGame(){
-        game.resetGame();
+        game.resetGame(3);
         winLine = false;
     }
 }

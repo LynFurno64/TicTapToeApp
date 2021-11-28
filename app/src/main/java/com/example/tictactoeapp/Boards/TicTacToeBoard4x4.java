@@ -12,12 +12,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.tictactoeapp.Boards.Logic.GameLogic;
+
 
 public class TicTacToeBoard4x4 extends View implements GridBoard{
     private final Paint mDrawPaint = new Paint();
     private int cellSize;
     private int mPaintColor = Color.BLACK;
-    private final GameLogic4x4 game = new GameLogic4x4();
+    private final GameLogic game = new GameLogic(4);
     private boolean winLine = false;
 
     public TicTacToeBoard4x4(Context context, AttributeSet attrs) {
@@ -50,8 +52,8 @@ public class TicTacToeBoard4x4 extends View implements GridBoard{
 
     @Override
     protected void onDraw(Canvas canvas){
-        drawGameBoard(canvas, 4, cellSize, mDrawPaint);
-        drawMarkers(canvas);
+        drawGameBoard(canvas, 4, cellSize);
+        drawMarkers(canvas, 4, cellSize, game);
     }// onDraw
 
     @SuppressLint("ClickableViewAccessibility")
@@ -70,7 +72,7 @@ public class TicTacToeBoard4x4 extends View implements GridBoard{
                 if (game.updateGameBoard(row,col)){
                     invalidate();
 
-                    if(game.Winner()){
+                    if(game.winConditions4x4()){
                         winLine = true;
                         invalidate();
                     }
@@ -90,32 +92,17 @@ public class TicTacToeBoard4x4 extends View implements GridBoard{
         return false;
     }
 
-    private void drawMarkers(Canvas canvas){
-        for (int r=0; r<4; r++){
-            for (int c=0; c<4; c++){
-                if (game.getGameBoard()[r][c] != 0){
-                    if (game.getGameBoard()[r][c] == 1){
-                        DrawX(canvas,r,c, cellSize);
-                    }
-                    else {
-                        DrawO(canvas,r,c, cellSize);
-                    }
-                }
-            }
-        }
-    }
-
     //setup the game
     public void gameTime(Button playAgain, Button home, TextView playDisplay, String[] name){
         game.setPlayAgainBtn(playAgain);
         game.setHomeBtn(home);
         game.setPlayerTurn(playDisplay);
         game.setName(name);
-    }
+    }// gameTime
 
     public void resetGame(){
-        game.resetGame();
+        game.resetGame(4);
         winLine = false;
-    }
+    }// resetGame
 
 }
