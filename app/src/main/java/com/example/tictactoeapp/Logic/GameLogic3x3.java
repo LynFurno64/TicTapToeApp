@@ -1,4 +1,4 @@
-package com.example.tictactoeapp.Boards;
+package com.example.tictactoeapp.Logic;
 
 import android.annotation.SuppressLint;
 import android.view.View;
@@ -29,10 +29,10 @@ public class GameLogic3x3 {
             gameBoard[row-1][col-1]= player;
 
             if (player==1){
-                playerTurn.setText(("Current Player"+" "+name[1]+"'s Turn"));
+                playerTurn.setText(("Currently"+" "+name[1]+"'s Turn"));
             }
             else {
-                playerTurn.setText(("Current Player"+" "+name[0]+"'s Turn"));
+                playerTurn.setText(("Currently"+" "+name[0]+"'s Turn"));
             }
 
             return true;

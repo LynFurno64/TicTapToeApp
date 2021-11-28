@@ -17,7 +17,6 @@ public class PlayerSetUp extends AppCompatActivity {
     EditText player1;
     EditText player2;
     String gameBoard;
-    int gridType;
     Intent intent;
 
     @Override
@@ -33,8 +32,6 @@ public class PlayerSetUp extends AppCompatActivity {
                 android.R.layout.simple_spinner_item);
         gridList.setDropDownViewResource(android.R.layout .simple_spinner_dropdown_item);
         spinControl.setAdapter(gridList);
-
-        //spinControl.setSelection(((ArrayAdapter)spinControl.getAdapter()).getPosition());
 
         spinControl.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -57,13 +54,11 @@ public class PlayerSetUp extends AppCompatActivity {
             case "3 x 3":
                 intent = new Intent(this, Grid3x3Display.class);
                 intent.putExtra("PLAYER_NAMES", new String[] {player1Name, player2Name});
-                intent.putExtra("GRID", 3);
                 startActivity(intent);
                 break;
             case "4 x 4":
                 intent = new Intent(this, Grid4x4Display.class);
                 intent.putExtra("PLAYER_NAMES", new String[] {player1Name, player2Name});
-                intent.putExtra("GRID", 4);
                 startActivity(intent);
                 break;
             case "5 x 5":

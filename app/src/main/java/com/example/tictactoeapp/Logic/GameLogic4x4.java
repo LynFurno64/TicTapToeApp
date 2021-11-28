@@ -1,4 +1,4 @@
-package com.example.tictactoeapp.Boards;
+package com.example.tictactoeapp.Logic;
 
 import android.annotation.SuppressLint;
 import android.view.View;

@@ -34,8 +34,12 @@ public class Grid4x4Display extends AppCompatActivity {
 
 
         String[] playerNames = getIntent().getStringArrayExtra("PLAYER_NAMES");
-        if (playerNames != null){
-            playerTurn.setText(("Current Player"+" "+playerNames[0] + "'s Turn"));
+        assert playerNames != null;
+        if (playerNames[0].equals("")){
+
+            playerTurn.setText("Player 1's turn");
+        }else{
+            playerTurn.setText(("Current Player"+" "+playerNames[0] + "'s turn"));
         }
 
         ticTacToeBoard4x4 = findViewById(R.id.ticTacToeBoard4x4);

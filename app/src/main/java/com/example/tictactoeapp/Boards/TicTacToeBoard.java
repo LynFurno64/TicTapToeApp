@@ -12,11 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.tictactoeapp.Logic.GameLogic3x3;
 
-public class TicTacToeBoard extends View {
+
+public class TicTacToeBoard extends View  implements GridBoard{
     private final Paint mDrawPaint = new Paint();
     private int cellSize;
-    private int mPaintColor = Color.BLACK;
+    private final int mPaintColor = Color.BLACK;
     private final GameLogic3x3 game = new GameLogic3x3();
     private boolean winLine = false;
 
@@ -51,7 +53,7 @@ public class TicTacToeBoard extends View {
     @Override
     protected void onDraw(Canvas canvas){
 
-        drawGameBoard(canvas);
+        drawGameBoard(canvas, 3, cellSize, mDrawPaint);
         drawMarkers(canvas);
 
     }// onDraw
@@ -91,59 +93,22 @@ public class TicTacToeBoard extends View {
         return false;
     }
 
-    private void drawGameBoard(Canvas canvas){
-        //For loop to Create the board
-        for (int col=1; col<3; col++){
-            canvas.drawLine(cellSize*col, 0, cellSize*col,canvas.getWidth(), mDrawPaint);
-        }
-        for (int row=1; row<3; row++){
-            canvas.drawLine(0, cellSize*row, canvas.getWidth(),cellSize*row, mDrawPaint);
-        }
-    }// drawGameBoard
 
     private void drawMarkers(Canvas canvas){
         for (int r=0; r<3; r++){
             for (int c=0; c<3; c++){
                 if (game.getGameBoard()[r][c] != 0){
                     if (game.getGameBoard()[r][c] == 1){
-                        DrawX(canvas,r,c);
+                        DrawX(canvas,r,c, cellSize);
                     }
                     else {
-                        DrawO(canvas,r,c);
+                        DrawO(canvas,r,c, cellSize);
                     }
                 }
             }
         }
-    }
+    }// drawMarkers
 
-    //X and O pieces
-    private void DrawX(Canvas canvas, int row , int col){
-        mDrawPaint.setColor(Color.RED);
-
-        // creates X
-        canvas.drawLine((float) ((col+1)*cellSize - cellSize*0.2),
-                        (float) (row*cellSize +cellSize*0.2),
-                        (float) (col*cellSize +cellSize*0.2),
-                        (float) ((row+1)*cellSize -cellSize*0.2),
-                        mDrawPaint);
-
-        canvas.drawLine((float) (col*cellSize + cellSize*0.2),
-                        (float) (row*cellSize + cellSize*0.2),
-                        (float) ((col+1)*cellSize - cellSize*0.2),
-                        (float) ((row+1)*cellSize - cellSize*0.2),
-                        mDrawPaint);
-    }
-
-    private void DrawO(Canvas canvas, int row , int col){
-        mDrawPaint.setColor(Color.BLUE);
-
-        canvas.drawOval((float) (col*cellSize + cellSize*0.2),
-                        (float) (row*cellSize + cellSize*0.2),
-                        (float) ((col*cellSize+ cellSize) -cellSize*0.2),
-                        (float) ((row*cellSize +cellSize) -cellSize*0.2),
-                        mDrawPaint);
-
-    }
     //setup the game
     public void gameTime(Button playAgain,Button home,TextView playDisplay,String[] name){
         game.setPlayAgainBtn(playAgain);
