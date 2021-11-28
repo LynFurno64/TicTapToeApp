@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="@string/player1_score"
+            android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold|italic" />
 
@@ -31,6 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:text="@string/player2_score"
+            android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold|italic" />
     </LinearLayout>
@@ -46,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/current_player"
+            android:textColor="@color/black"
             android:textSize="27sp"
             android:textStyle="bold" />
 

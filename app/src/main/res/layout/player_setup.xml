@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D1C4E9"
+    android:background="#9FA8DA"
     android:orientation="vertical">
 
     <TextView
@@ -13,6 +13,7 @@
         android:layout_marginTop="30dp"
         android:text="@string/title_label"
         android:textAlignment="center"
+        android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold" />
 
@@ -99,6 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/label3"
+            android:textColor="#000000"
             android:textSize="20sp"
             android:textStyle="bold" />
 
@@ -129,5 +131,7 @@
             android:text="@string/btn_label4"
             android:textSize="20sp" />
     </LinearLayout>
+
+    <!---android:background="#D1C4E9"-->
 
 </LinearLayout>
