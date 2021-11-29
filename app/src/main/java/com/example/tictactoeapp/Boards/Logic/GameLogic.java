@@ -10,6 +10,8 @@ public class GameLogic {
     private Button playAgainBtn;
     private Button homeBtn;
     private TextView playerTurn;
+    private TextView score1;
+    private TextView score2;
     private String[] name = {"Player 1","Player 2"};
 
     private int player = 1;
@@ -41,6 +43,7 @@ public class GameLogic {
         }
     }// updateGameBoard
 
+    @SuppressLint("SetTextI18n")
     public void resetGame(int gridSize){
         for (int r=0; r< gridSize; r++){
             for (int c=0; c< gridSize; c++){
@@ -50,10 +53,26 @@ public class GameLogic {
         player = 1;
         playAgainBtn.setVisibility(View.GONE);
         homeBtn.setVisibility(View.GONE);
-
         playerTurn.setText(("Current Player"+" "+name[0]+"'s Turn"));
-
     }// resetGame
+
+    @SuppressLint("SetTextI18n")
+    // keep track of players score
+    public void scoreBoard(){
+        int counter = 0;
+        int ctr = 0;
+        counter++;
+        ctr++;
+        score1.setText(name[player-1] + "Score :"+ counter);
+        score2.setText(name[player-1] + "Score :"+ ctr);
+    }
+    public void setScore1(TextView score1) {
+        this.score1 = score1;
+    }
+
+    public void setScore2(TextView score2) {
+        this.score2 = score2;
+    }
 
     public void setHomeBtn(Button homeBtn) {
         this.homeBtn = homeBtn;
@@ -79,19 +98,22 @@ public class GameLogic {
     @SuppressLint("SetTextI18n")
     public boolean winConditions3x3(){
         boolean win = false;
-
+        //win logic for 4x4
+        //horizontal
         for (int r =0; r<3; r++){
             if (gameBoard[r][0] == gameBoard[r][1] && gameBoard[r][0] == gameBoard[r][2] &&
                     gameBoard[r][0] != 0) {
                 win = true;
             }
         }
+        //vertical
         for (int c =0; c<3; c++){
             if (gameBoard[0][c] == gameBoard[1][c] && gameBoard[0][c] == gameBoard[2][c] &&
                     gameBoard[0][c] != 0) {
                 win = true;
             }
         }
+        //diagonal
         if (gameBoard[0][0] == gameBoard[1][1]&& gameBoard[0][0] == gameBoard[2][2]&&
                 gameBoard[0][0] != 0){
             win = true;
@@ -108,11 +130,11 @@ public class GameLogic {
                 }
             }
         }
-
         if (win){
             playAgainBtn.setVisibility(View.VISIBLE);
             homeBtn.setVisibility(View.VISIBLE);
             playerTurn.setText((name[player-1] + " WON !!!!!!!"));
+            scoreBoard();
             return true;
         }
         else if (boardFilled == 9 ){

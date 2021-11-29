@@ -30,6 +30,8 @@ public class Grid3x3Display extends AppCompatActivity {
         Button playAgainBtn = findViewById(R.id.play_again_button);
         Button homeBtn = findViewById(R.id.go_home_button);
         TextView playerTurn = findViewById(R.id.current_player_TV);
+        TextView score1 = findViewById(R.id.tv_p1Score);
+        TextView score2 = findViewById(R.id.tv_p2Score);
 
         playAgainBtn.setVisibility(View.GONE);
         homeBtn.setVisibility(View.GONE);
@@ -45,7 +47,7 @@ public class Grid3x3Display extends AppCompatActivity {
         }
         ticTacToeBoard = findViewById(R.id.ticTacToeBoard_3);
 
-        ticTacToeBoard.gameTime(playAgainBtn,homeBtn,playerTurn,playerNames);
+        ticTacToeBoard.gameTime(playAgainBtn,homeBtn,playerTurn,playerNames,score1,score2);
     }
 
     public void playAgainBtnClick(View view){
@@ -57,4 +59,5 @@ public class Grid3x3Display extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }// homeBtnClick
+
 }

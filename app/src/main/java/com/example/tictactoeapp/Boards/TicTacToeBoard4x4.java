@@ -97,7 +97,9 @@ public class TicTacToeBoard4x4 extends View implements GridBoard{
         game.setPlayAgainBtn(playAgain);
         game.setHomeBtn(home);
         game.setPlayerTurn(playDisplay);
-        game.setName(name);
+        if (!name[0].equals("") && !name[1].equals("")){
+            game.setName(name);
+        }
     }// gameTime
 
     public void resetGame(){

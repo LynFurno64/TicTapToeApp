@@ -79,13 +79,15 @@ public class TicTacToeBoard extends View  implements GridBoard{
     }
 
     //setup the game
-    public void gameTime(Button playAgain,Button home,TextView playDisplay,String[] name){
+    public void gameTime(Button playAgain,Button home,TextView playDisplay,String[] name,TextView score1,TextView score2){
         game.setPlayAgainBtn(playAgain);
         game.setHomeBtn(home);
         game.setPlayerTurn(playDisplay);
         if (!name[0].equals("") && !name[1].equals("")){
             game.setName(name);
         }
+        game.setScore1(score1);
+        game.setScore2(score2);
     }
 
     public void resetGame(){
