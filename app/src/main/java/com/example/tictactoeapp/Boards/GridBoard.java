@@ -44,6 +44,7 @@ public interface GridBoard {
     }// drawMarkers
 
     //-----------------------X and O pieces-------------------------\\
+
     default void DrawX(Canvas canvas, int row, int col, int cellSize){
         colorPaintX.setColor(Color.RED);
         colorPaintX.setStyle(Paint.Style.STROKE);

@@ -10,9 +10,12 @@ public class GameLogic {
     private Button playAgainBtn;
     private Button homeBtn;
     private TextView playerTurn;
-    private TextView score1;
-    private TextView score2;
     private String[] name = {"Player 1","Player 2"};
+
+    private TextView p1score;
+    private TextView p2score;
+    int player1_score = 0;
+    int player2_score = 0;
 
     private int player = 1;
 
@@ -58,20 +61,25 @@ public class GameLogic {
 
     @SuppressLint("SetTextI18n")
     // keep track of players score
-    public void scoreBoard(){
-        int counter = 0;
-        int ctr = 0;
-        counter++;
-        ctr++;
-        score1.setText(name[player-1] + "Score :"+ counter);
-        score2.setText(name[player-1] + "Score :"+ ctr);
-    }
-    public void setScore1(TextView score1) {
-        this.score1 = score1;
+    public void scoreBoard(String called){
+        //check if player 1
+        if (called.equals(name[0])){
+            player1_score++;
+            p1score.setText(name[0] + "Score : "+ player1_score);
+        }
+        // //check if player 2
+        if (called.equals(name[1])){
+            player2_score++;
+            p2score.setText(name[1] + "Score : "+ player2_score);
+        }
     }
 
-    public void setScore2(TextView score2) {
-        this.score2 = score2;
+    public void setP1score(TextView p1score) {
+        this.p1score = p1score;
+    }
+
+    public void setP2score(TextView p2score) {
+        this.p2score = p2score;
     }
 
     public void setHomeBtn(Button homeBtn) {
@@ -134,7 +142,7 @@ public class GameLogic {
             playAgainBtn.setVisibility(View.VISIBLE);
             homeBtn.setVisibility(View.VISIBLE);
             playerTurn.setText((name[player-1] + " WON !!!!!!!"));
-            scoreBoard();
+            scoreBoard(name[player-1]);
             return true;
         }
         else if (boardFilled == 9 ){
@@ -189,6 +197,7 @@ public class GameLogic {
             playAgainBtn.setVisibility(View.VISIBLE);
             homeBtn.setVisibility(View.VISIBLE);
             playerTurn.setText((name[player-1] + " WON !!!!!!!"));
+            scoreBoard(name[player-1]);
             return true;
         }
         else if (boardFilled == 20 ){
@@ -244,6 +253,7 @@ public class GameLogic {
             playAgainBtn.setVisibility(View.VISIBLE);
             homeBtn.setVisibility(View.VISIBLE);
             playerTurn.setText((name[player-1] + " WON !!!!!!!"));
+            scoreBoard(name[player-1]);
             return true;
         }
         else if (boardFilled == 25  ){

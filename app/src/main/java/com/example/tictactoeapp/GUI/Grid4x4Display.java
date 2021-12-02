@@ -29,6 +29,10 @@ public class Grid4x4Display extends AppCompatActivity {
         Button homeBtn = findViewById(R.id.go_home_button);
         TextView playerTurn = findViewById(R.id.current_player_TV);
 
+        // Scores
+        TextView p1score = findViewById(R.id.tv_p1Score);
+        TextView p2score = findViewById(R.id.tv_p2Score);
+
         playAgainBtn.setVisibility(View.GONE);
         homeBtn.setVisibility(View.GONE);
 
@@ -39,11 +43,14 @@ public class Grid4x4Display extends AppCompatActivity {
             playerTurn.setText("Player 1's turn");
         }else{
             playerTurn.setText(("Current Player"+" "+playerNames[0] + "'s turn"));
+            // Set Names on Scores
+            p1score.setText(playerNames[0] + " Score: 0");
+            p2score.setText(playerNames[1] + " Score: 0");
         }
 
         ticTacToeBoard4x4 = findViewById(R.id.ticTacToeBoard4x4);
 
-        ticTacToeBoard4x4.gameTime(playAgainBtn,homeBtn,playerTurn,playerNames);
+        ticTacToeBoard4x4.gameTime(playAgainBtn,homeBtn,playerTurn,playerNames, p1score, p1score);
     }
 
     public void playAgainBtnClick(View view){

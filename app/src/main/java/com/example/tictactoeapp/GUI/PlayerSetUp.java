@@ -18,7 +18,6 @@ public class PlayerSetUp extends AppCompatActivity {
     EditText player1;
     EditText player2;
     String gameBoard;
-    Intent intent;
     public static final String SHARE_PREF = "shared";
     public static final String PLAYER_1 = "player_1";
     public static final String PLAYER_2 = "player_2";
@@ -53,6 +52,7 @@ public class PlayerSetUp extends AppCompatActivity {
     }// onCreate
 
     public void startButtonClick(View view){
+        Intent intent;
         String player1Name = player1.getText().toString();
         String player2Name = player2.getText().toString();
 

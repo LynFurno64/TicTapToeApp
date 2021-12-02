@@ -16,23 +16,12 @@ import com.example.tictactoeapp.Boards.Logic.GameLogic;
 
 
 public class TicTacToeBoard4x4 extends View implements GridBoard{
-    private final Paint mDrawPaint = new Paint();
     private int cellSize;
-    private int mPaintColor = Color.BLACK;
     private final GameLogic game = new GameLogic(4);
     private boolean winLine = false;
 
     public TicTacToeBoard4x4(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initPaint();
-    }
-
-    private void initPaint()
-    {
-        mDrawPaint.setStyle(Paint.Style.STROKE);
-        mDrawPaint.setAntiAlias(true);
-        mDrawPaint.setColor(mPaintColor);
-        mDrawPaint.setStrokeWidth(16);
     }
 
     // Set Dimensions of Board
@@ -93,14 +82,16 @@ public class TicTacToeBoard4x4 extends View implements GridBoard{
     }
 
     //setup the game
-    public void gameTime(Button playAgain, Button home, TextView playDisplay, String[] name){
+    public void gameTime(Button playAgain,Button home,TextView playDisplay,String[] name,TextView player1Score,TextView player2Score){
         game.setPlayAgainBtn(playAgain);
         game.setHomeBtn(home);
         game.setPlayerTurn(playDisplay);
         if (!name[0].equals("") && !name[1].equals("")){
             game.setName(name);
         }
-    }// gameTime
+        game.setP1score(player1Score);
+        game.setP2score(player2Score);
+    }
 
     public void resetGame(){
         game.resetGame(4);
